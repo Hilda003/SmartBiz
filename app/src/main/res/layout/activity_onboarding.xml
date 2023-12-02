@@ -4,6 +4,108 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black_01"
     tools:context=".ui.onboarding.OnboardingActivity">
+
+
+    <TextView
+        android:id="@+id/tvSkip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/skip"
+        android:fontFamily="@font/jost_medium"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="30dp"/>
+    <TextView
+        android:id="@+id/txtSmart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/jost_medium"
+        android:text="@string/Smart"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="60dp"
+        />
+
+    <TextView
+        android:id="@+id/txtBiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/jost_medium"
+        android:text="@string/Biz"
+        android:textColor="@color/yellow_01"
+        android:textSize="40sp"
+        app:layout_constraintStart_toEndOf="@id/txtSmart"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="120dp"
+        />
+
+    <ImageView
+        android:id="@+id/iconApp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_launcher_background"
+        app:layout_constraintTop_toBottomOf="@id/txtSmart"
+        app:layout_constraintStart_toStartOf="@id/txtSmart"
+        app:layout_constraintEnd_toEndOf="@id/txtSmart"
+        android:contentDescription="@string/iconapp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="60dp"/>
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title"
+        android:textColor="@color/white"
+        android:fontFamily="@font/jost_medium"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/iconApp"
+        app:layout_constraintStart_toStartOf="@id/iconApp"
+        app:layout_constraintEnd_toEndOf="@id/iconApp"
+        android:layout_marginTop="30dp"
+        />
+
+
+    <TextView
+        android:id="@+id/txtDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/desc"
+        android:textAlignment="center"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/jost_medium"
+        app:layout_constraintTop_toBottomOf="@id/txtTitle"
+        app:layout_constraintStart_toStartOf="@id/txtTitle"
+        app:layout_constraintEnd_toEndOf="@id/txtTitle"/>
+
+    <Button
+        android:id="@+id/btnContinue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/next"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

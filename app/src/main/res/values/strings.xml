@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">SmartBiz</string>
+    <string name="Smart">Smart</string>
+    <string name="Biz">Biz</string>
+    <string name="skip">Skip</string>
+    <string name="iconapp">iconApp</string>
+    <string name="title">Create Income</string>
+    <string name="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, atque consectetur ea eveniet impedit inventore perferendis possimus sapiente tempora. Commodi consequatur maiores minus nisi praesentium quae qui, tempora! Ea, quisquam!</string>
+    <string name="next">Next</string>
+    <string name="tv_email">Email</string>
+    <string name="tv_password">Password</string>
+    <string name="login">Login</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="tv_account">Don’t have an account?</string>
+    <string name="create_account">Register</string>
+
+    <string name="username">Username</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="register">Register</string>
+    <string name="welcome">Hallo Putri, Welcome!</string>
+    <string name="input_data">Silahkan input data usaha kamu ya!</string>
+    <string name="type">Apa jenis usaha kamu?</string>
+    <string name="input_product">Barang apakah yang ingin anda jual?</string>
+    <string name="input_total">Berapa total barang tersebut?</string>
+    <string name="input_price">Berapa harga barang tersebut?</string>
 </resources>
