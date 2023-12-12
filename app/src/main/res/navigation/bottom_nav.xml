@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@layout/fragment_dashboard"
+    android:id="@+id/bottom_nav">
+
+
+    <fragment
+        android:id="@+id/fragment_dashboard"
+        android:name="com.example.smartbiz.ui.dashboard.DashboardFragment"
+        tools:layout="@layout/fragment_dashboard"
+        android:label="@string/dashboard"/>
+
+    <fragment
+        android:id="@+id/fragment_history"
+        android:name="com.example.smartbiz.ui.dashboard.DashboardFragment"
+        tools:layout="@layout/fragment_history"
+        android:label="history"/>
+
+
+    <fragment
+        android:id="@+id/fragment_statistics"
+        android:name="com.example.smartbiz.ui.statistics.StatisticsFragment"
+        tools:layout="@layout/fragment_history"
+        android:label="Statistic"/>
+
+
+    <fragment
+        android:id="@+id/fragment_profile"
+        android:name="com.example.smartbiz.ui.profile.ProfileFragment"
+        tools:layout="@layout/fragment_profile"
+        android:label="Proifile"/>
+
+
+
+
+
+
+</navigation>
