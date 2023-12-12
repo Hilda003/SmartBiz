@@ -3,6 +3,7 @@ package com.example.smartbiz
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -15,6 +16,7 @@ import com.example.smartbiz.ui.history.HistoryFragment
 import com.example.smartbiz.ui.profile.ProfileFragment
 import com.example.smartbiz.ui.statistics.StatisticsFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -50,7 +52,12 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+
+
+
     }
+
+
 
 
 

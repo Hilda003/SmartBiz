@@ -4,20 +4,150 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/brown_01"
+    android:background="@color/black"
     tools:context=".ui.dashboard.DashboardFragment">
+    
 
 
-    <TextView
-        android:id="@+id/txtView"
-        android:layout_width="wrap_content"
+
+
+<TextView
+    android:id="@+id/tv_user"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/hallo_user"
+    android:layout_marginTop="100dp"
+    android:fontFamily="@font/jost_medium"
+    android:textSize="17sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+
+    app:layout_constraintStart_toStartOf="parent"/>
+
+    <LinearLayout
+        android:id="@+id/layout_income"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="This Is Dashboard"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/rectangle_background"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@id/layout_outcome"
+        app:layout_constraintDimensionRatio="H, 1:1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        />
+        android:padding="15dp">
+
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:padding="8dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/income"
+            android:contentDescription="@string/income"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/jost_medium"
+            android:textSize="20sp"
+            android:text="@string/create_income"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_outcome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:background="@drawable/rectangle_background"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintDimensionRatio="H, 1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/layout_income"
+        android:padding="15dp">
+
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:padding="8dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/outcome"
+            android:contentDescription="@string/outcome"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/jost_medium"
+            android:textSize="19sp"
+            android:text="@string/create_outcome"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_items"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:background="@drawable/rectangle_background"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toStartOf="@id/layout_outcome"
+        app:layout_constraintDimensionRatio="H, 1:1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_income"
+        android:padding="15dp">
+
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:padding="8dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/merch"
+            android:contentDescription="@string/income"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/jost_medium"
+            android:textSize="20sp"
+            android:text="@string/your_items"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_insight"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:background="@drawable/rectangle_background"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintDimensionRatio="H, 1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layout_outcome"
+        app:layout_constraintStart_toEndOf="@id/layout_income"
+        android:padding="15dp">
+
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:padding="8dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/insight"
+            android:contentDescription="@string/insight"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/jost_medium"
+            android:textSize="20sp"
+            android:text="@string/insight_business"/>
+    </LinearLayout>
+
 
 
 

@@ -34,4 +34,19 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="create_income">Create Income</string>
+    <string name="income">Income</string>
+    <string name="outcome">Outcome</string>
+    <string name="create_outcome">Create Outcome</string>
+    <string name="your_items">Your Items</string>
+    <string name="insight">Insight</string>
+    <string name="insight_business">Insight Business</string>
+    <string name="hallo_user">Hallo, User!</string>
+    <string name="notification">Notification</string>
+    <string name="help">help</string>
+    <string name="delete">delete</string>
+    <string name="filter">Filter</string>
+    <string name="sort">Sort</string>
+    <string name="icon_profile">icon profile</string>
+    <string name="line">line</string>
 </resources>
