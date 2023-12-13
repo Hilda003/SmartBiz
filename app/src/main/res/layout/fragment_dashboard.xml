@@ -6,10 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/black"
     tools:context=".ui.dashboard.DashboardFragment">
-    
-
-
-
 
 <TextView
     android:id="@+id/tv_user"
@@ -18,7 +14,7 @@
     android:text="@string/hallo_user"
     android:layout_marginTop="100dp"
     android:fontFamily="@font/jost_medium"
-    android:textSize="17sp"
+    android:textSize="20sp"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintTop_toTopOf="parent"
 

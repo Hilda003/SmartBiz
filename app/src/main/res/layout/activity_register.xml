@@ -55,16 +55,17 @@
         android:layout_height="60dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:padding="16dp"
-        android:ems="10"
-        tools:alpha="100"
-        android:singleLine="true"
+        android:autofillHints=""
         android:background="@drawable/input"
+        android:ems="10"
+        android:inputType="text"
+        android:padding="16dp"
+        android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvName"
-        android:autofillHints=""
-        android:inputType="text"
+        tools:alpha="100"
         tools:ignore="LabelFor" />
 
     <TextView

@@ -49,4 +49,14 @@
     <string name="sort">Sort</string>
     <string name="icon_profile">icon profile</string>
     <string name="line">line</string>
+    <string name="enter_the_date">Enter the date</string>
+    <string name="date">Date</string>
+    <string name="what_kind_of_item">What kind of item?</string>
+    <string name="how_many">How many?</string>
+    <string name="how_much_for_the_price">How much for the price?</string>
+    <string name="total">Total</string>
+    <string name="rp_30_000">Rp. 30.000</string>
+    <string name="save">Save</string>
+    <string name="hoodie">Hoodie</string>
+    <string name="rp_40_000">Rp 40.000</string>
 </resources>

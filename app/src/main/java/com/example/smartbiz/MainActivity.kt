@@ -1,9 +1,11 @@
 package com.example.smartbiz
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -52,9 +54,23 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        return super.onCreateOptionsMenu(menu)
+    }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.notification -> {
+                startActivity(Intent(this, NotificationActivity::class.java))
+            }
+            R.id.help -> {
+                startActivity(Intent(this, HelpActivity::class.java))
+            }
 
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 
