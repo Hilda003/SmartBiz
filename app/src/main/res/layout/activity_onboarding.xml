@@ -5,7 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black_01"
-    tools:context=".ui.onboarding.OnboardingActivity">
+    tools:context=".ui.OnboardingActivity">
+
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/onBoardingView"
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toTopOf="parent"/>
 
 
     <TextView
@@ -48,58 +58,35 @@
         android:layout_marginTop="120dp"
         />
 
-    <ImageView
-        android:id="@+id/iconApp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher_background"
-        app:layout_constraintTop_toBottomOf="@id/txtSmart"
-        app:layout_constraintStart_toStartOf="@id/txtSmart"
-        app:layout_constraintEnd_toEndOf="@id/txtSmart"
-        android:contentDescription="@string/iconapp"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="60dp"/>
 
-    <TextView
-        android:id="@+id/txtTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/title"
-        android:textColor="@color/white"
-        android:fontFamily="@font/jost_medium"
-        android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/iconApp"
-        app:layout_constraintStart_toStartOf="@id/iconApp"
-        app:layout_constraintEnd_toEndOf="@id/iconApp"
-        android:layout_marginTop="30dp"
-        />
-
-
-    <TextView
-        android:id="@+id/txtDesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/desc"
-        android:textAlignment="center"
-        android:padding="10dp"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/white"
-        android:fontFamily="@font/jost_medium"
-        app:layout_constraintTop_toBottomOf="@id/txtTitle"
-        app:layout_constraintStart_toStartOf="@id/txtTitle"
-        app:layout_constraintEnd_toEndOf="@id/txtTitle"/>
 
     <Button
         android:id="@+id/btnContinue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/next"
+        android:fontFamily="@font/jost_medium"
+        android:textSize="17sp"
+        android:backgroundTint="@color/yellow_01"
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/button"
+        app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         />
+
+
+    <LinearLayout
+        android:id="@+id/indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/onBoardingView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

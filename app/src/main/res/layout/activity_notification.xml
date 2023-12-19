@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/brown_03"
-    tools:context=".NotificationActivity">
+    tools:context=".ui.NotificationActivity">
 
 
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_notification"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         tools:listitem="@layout/notification_item"
         app:layout_constraintStart_toStartOf="parent"

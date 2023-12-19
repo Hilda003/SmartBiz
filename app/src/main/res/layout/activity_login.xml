@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black_01"
-    tools:context=".ui.login.LoginActivity">
+    tools:context=".ui.LoginActivity">
 
     <TextView
         android:id="@+id/txtSmart"
@@ -49,19 +50,20 @@
         android:layout_marginStart="32dp"/>
 
 
-    <com.example.smartbiz.customview.EmailText
-        android:id="@+id/EmailText"
+    <EditText
+        android:id="@+id/tv_username"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/input"
-        android:text="Email"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvEmail"/>
+        app:layout_constraintTop_toBottomOf="@+id/tvEmail"
+        android:autofillHints="your username"
+        android:inputType="text" />
 
     <TextView
         android:id="@+id/tvPassword"
@@ -73,7 +75,7 @@
         android:textColor="@color/yellow_02"
         android:fontFamily="@font/jost_regular"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/EmailText"
+        app:layout_constraintTop_toBottomOf="@id/tv_username"
         android:layout_marginStart="32dp"/>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -96,7 +98,6 @@
             android:background="@drawable/input"
             android:ems="10"
             android:singleLine="true"
-            android:text="Password"
             android:fontFamily="@font/jost_medium"
             android:padding="16dp"
             android:inputType="textPassword" />
@@ -117,7 +118,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLogin"
         android:layout_width="0dp"
         android:layout_height="55dp"
@@ -127,7 +128,6 @@
         android:backgroundTint="@color/yellow_02"
         android:text="@string/login"
         tools:alpha="100"
-        android:background="@drawable/button"
         android:fontFamily="@font/jost_bold"
         android:textSize="16sp"
         android:textColor="@color/black"
@@ -163,6 +163,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="98dp"/>
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="296dp"
+        android:layout_marginEnd="188dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtBiz" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

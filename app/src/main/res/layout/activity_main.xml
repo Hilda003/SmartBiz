@@ -10,6 +10,7 @@
     tools:context="com.example.smartbiz.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
+        style="@style/Theme.AppCompat.DayNight.NoActionBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,8 +20,8 @@
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:menu="@menu/menu_app"
-            app:title="@string/app_name" />
+            app:menu="@menu/menu_app"/>
+
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -45,7 +46,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:background="@drawable/bg_bottom_nav"
             app:itemIconSize="28dp"
             app:itemIconTint="@color/white"
             app:itemTextColor="@color/yellow_02"

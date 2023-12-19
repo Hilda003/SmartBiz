@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black_01"
-    tools:context=".InputDataActivity">
+    tools:context=".ui.InputDataActivity">
 
     <TextView
         android:id="@+id/txtSmart"
@@ -63,39 +63,17 @@
 
 
     <TextView
-        android:id="@+id/tvType"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:layout_marginTop="60dp"
-        android:fontFamily="@font/jost_regular"
-        android:textColor="@color/yellow_02"
-        android:layout_marginStart="32dp"
-        android:text="@string/type"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtInputData"/>
-
-    <Spinner
-        android:id="@+id/dropdown_menu"
-        android:layout_width="350dp"
-        android:layout_height="50dp"
-        android:background="@drawable/input"
-        android:layout_marginStart="32dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvType"/>
-
-    <TextView
         android:id="@+id/tv_input_product"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:layout_marginTop="7dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="41dp"
         android:fontFamily="@font/jost_regular"
-        android:textColor="@color/yellow_02"
-        android:layout_marginStart="32dp"
         android:text="@string/input_product"
+        android:textColor="@color/yellow_02"
+        android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/dropdown_menu"/>
+        app:layout_constraintTop_toBottomOf="@+id/txtInputData" />
 
     <EditText
         android:id="@+id/product"
@@ -107,7 +85,6 @@
         android:ems="8"
         tools:alpha="100"
         android:singleLine="true"
-        android:text="input"
         android:background="@drawable/input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -130,7 +107,7 @@
         app:layout_constraintTop_toBottomOf="@id/product"/>
 
     <EditText
-        android:id="@+id/tv_count"
+        android:id="@+id/tv_quantity"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="32dp"
@@ -138,7 +115,6 @@
         android:padding="16dp"
         android:ems="8"
         tools:alpha="100"
-        android:text="input"
         android:singleLine="true"
         android:background="@drawable/input"
         app:layout_constraintEnd_toEndOf="parent"
@@ -159,7 +135,7 @@
         android:layout_marginStart="32dp"
         android:text="@string/input_price"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_count"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_quantity"/>
 
     <EditText
         android:id="@+id/price_edit_text"
@@ -169,8 +145,6 @@
         android:layout_marginEnd="32dp"
         android:padding="16dp"
         android:ems="8"
-        tools:alpha="100"
-        android:text="input"
         android:singleLine="true"
         android:background="@drawable/input"
         app:layout_constraintEnd_toEndOf="parent"
@@ -191,7 +165,7 @@
         android:layout_marginStart="32dp"
         android:text="@string/input_price"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_count"/>
+        app:layout_constraintTop_toBottomOf="@id/tv_quantity"/>
 
     <Button
         android:id="@+id/btn_next"
@@ -202,7 +176,7 @@
         android:layout_marginEnd="32dp"
         android:text="@string/next"
         tools:alpha="100"
-        android:background="@drawable/button"
+        android:backgroundTint="@color/yellow_02"
         android:fontFamily="@font/jost_bold"
         android:textSize="16sp"
         android:textColor="@color/black"
@@ -210,8 +184,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/price_edit_text" />
 
-
-
+    <TextView
+        android:id="@+id/btn_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="48dp"
+        android:fontFamily="@font/jost_bold"
+        android:text="@string/add_item"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/price_edit_text" />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="296dp"
+        android:layout_marginEnd="188dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtBiz" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

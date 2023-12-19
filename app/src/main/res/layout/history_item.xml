@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/img_income"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/income_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:contentDescription="@string/income"
+        android:layout_marginStart="20dp"/>
+
+    <TextView
+        android:id="@+id/txt_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/jost_medium"
+        android:textSize="17sp"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="35dp"
+        app:layout_constraintStart_toEndOf="@+id/img_income"
+        app:layout_constraintTop_toTopOf="@+id/img_income"
+        app:layout_constraintBottom_toBottomOf="@+id/img_income"
+        android:text="@string/terigu"/>
+    <TextView
+        android:id="@+id/txt_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/jost_medium"
+        android:textSize="17sp"
+        android:layout_marginStart="15dp"
+       android:layout_marginTop="5dp"
+        app:layout_constraintStart_toEndOf="@+id/img_income"
+        app:layout_constraintTop_toBottomOf="@+id/txt_item"
+        android:text="@string/_25_09_2023"/>
+
+
+    <TextView
+        android:id="@+id/txt_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/jost_medium"
+        android:textSize="17sp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txt_item"
+        android:text="@string/_50_000"/>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

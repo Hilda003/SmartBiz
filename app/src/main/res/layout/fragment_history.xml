@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
 
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.history.HistoryFragment">
+    tools:context=".ui.HistoryFragment">
 
 
     <FrameLayout
@@ -32,7 +32,20 @@
             android:layout_marginTop="20dp"
             android:fontFamily="@font/jost_medium"
             android:textSize="20sp"
-            android:text="History"/>
+            android:text="@string/history"/>
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_history"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/history_item"/>
+
+        </androidx.core.widget.NestedScrollView>
 
 
         <ImageView

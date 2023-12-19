@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black_01"
-    tools:context=".ui.register.RegisterActivity">
+    tools:context=".ui.RegisterActivity">
 
     <TextView
         android:id="@+id/txtSmart"
@@ -143,7 +143,7 @@
         android:layout_marginEnd="32dp"
         android:text="@string/register"
         tools:alpha="100"
-        android:background="@drawable/button"
+        android:backgroundTint="@color/yellow_02"
         android:fontFamily="@font/jost_bold"
         android:textSize="16sp"
         android:textColor="@color/black"
@@ -178,5 +178,16 @@
         app:layout_constraintTop_toBottomOf="@id/btnRegister"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="100dp"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="296dp"
+        android:layout_marginEnd="188dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtBiz" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
