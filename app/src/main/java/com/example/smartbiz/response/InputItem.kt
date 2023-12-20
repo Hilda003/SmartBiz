@@ -14,7 +14,7 @@ data class InputItem(
 )
 
 
-@Entity(tableName = "item")
+
 data class Item(
 
 	@field:SerializedName("jumlahBarang")

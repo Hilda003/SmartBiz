@@ -40,18 +40,7 @@ class StatisticsFragment : Fragment() {
     }
 
 
-    private fun getData() {
-        lifecycleScope.launch {
-            val response = apiService.getProfit(1)
-            if (response.isSuccessful){
-                Log.e("Response", "getProfit success : ${response.body()?.totalExpense}")
 
-            }
-            else{
-                Log.e("Response", "getProfit error : ${response.message()}")
-            }
-        }
-    }
 
     private fun setUpPieChart() = with(binding.expenseChart) {
         isDrawHoleEnabled = true

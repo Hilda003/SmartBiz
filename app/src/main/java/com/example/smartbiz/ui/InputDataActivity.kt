@@ -1,16 +1,24 @@
 package com.example.smartbiz.ui
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.Window
 import android.widget.Toast
 import androidx.activity.viewModels
+
+import androidx.core.graphics.drawable.toDrawable
 import com.example.smartbiz.MainActivity
+import com.example.smartbiz.R
 import com.example.smartbiz.data.*
 import com.example.smartbiz.databinding.ActivityInputDataBinding
+import com.example.smartbiz.databinding.PopupDialogBinding
 import com.example.smartbiz.viewmodel.InputItemViewModel
-import com.example.smartbiz.viewmodel.LoginViewModel
+
 
 class InputDataActivity : AppCompatActivity() {
 
@@ -49,7 +57,7 @@ class InputDataActivity : AppCompatActivity() {
                     }
                     is Result.Error -> {
                         binding.progressBar.visibility = View.GONE
-                        Toast.makeText(this, it.error, Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "Input Data Failed", Toast.LENGTH_SHORT).show()
                     }
 
                 }
@@ -57,13 +65,27 @@ class InputDataActivity : AppCompatActivity() {
         }
 
         binding.btnNext.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-
-
+            showDialog()
         }
+    }
+
+    private fun showDialog() {
+        val binding = PopupDialogBinding.inflate(layoutInflater)
+
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(binding.root)
+        dialog.window?.setBackgroundDrawable(R.color.black_01.toDrawable())
 
 
+        binding.message.text
+        binding.btnYes.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+        }
+        binding.btnNo.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
 
     }
 }

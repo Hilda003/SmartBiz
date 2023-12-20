@@ -31,6 +31,8 @@ class HistoryFragment : Fragment(), View.OnClickListener {
             peekHeight = 300
             state = BottomSheetBehavior.STATE_EXPANDED
         }
+
+
     }
 
     companion object {

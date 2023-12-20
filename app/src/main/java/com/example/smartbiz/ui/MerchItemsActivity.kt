@@ -6,11 +6,15 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.smartbiz.adapter.MerchAdapter
 import com.example.smartbiz.databinding.ActivityMerchItemsBinding
+import com.example.smartbiz.response.InputItem
+import com.example.smartbiz.response.Item
 
 class MerchItemsActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityMerchItemsBinding
     private val adapter = MerchAdapter(this)
+    private var arrayList: ArrayList<Item> = arrayListOf()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityMerchItemsBinding.inflate(layoutInflater)

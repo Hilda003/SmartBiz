@@ -10,12 +10,18 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import com.example.smartbiz.databinding.FragmentProfileBinding
+import com.example.smartbiz.response.Login
+import com.example.smartbiz.response.LoginResult
 import com.example.smartbiz.viewmodel.SettingViewModel
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 class ProfileFragment : Fragment() {
+
+    val userData = MutableLiveData<LoginResult>()
+
 
     private lateinit var binding : FragmentProfileBinding
 
@@ -25,26 +31,10 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+
+
         val settings = Settings.getInstance(requireContext().dataStore)
-        val setViewModel = ViewModelProvider(requireActivity(), UserFactory(settings))[SettingViewModel::class.java]
-        setViewModel.getThemeApp().observe(viewLifecycleOwner) {
-             if (it == 0) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-
-            }
-        }
-        binding.switchTheme.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                setViewModel.saveThemeApp(1)
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                setViewModel.saveThemeApp(0)
-            }
-        }
 
 
     }

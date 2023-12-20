@@ -5,13 +5,13 @@ import com.google.gson.annotations.SerializedName
 data class Profit(
 
 	@field:SerializedName("data")
-	val data: Data,
+	val data: List<DataProfit>,
 
 	@field:SerializedName("status")
 	val status: String
 )
 
-data class Data(
+data class DataProfit(
 
 	@field:SerializedName("total_expense")
 	val totalExpense: Int,

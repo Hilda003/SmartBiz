@@ -11,7 +11,7 @@
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="170dp"
-        android:background="@drawable/bg_outcome"
+        android:background="@drawable/background_layout"
         android:backgroundTint="@color/green"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -55,7 +55,7 @@
         android:textColor="@color/black"
         android:fontFamily="@font/jost_regular"
         android:padding="10dp"
-        android:background="@drawable/input_pick_date"
+        android:background="@drawable/input_edit_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_date"/>
@@ -72,8 +72,12 @@
         app:layout_constraintTop_toTopOf="@id/tv_date_picker"/>
 
 
-
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_date" />
 
     <Button
         android:id="@+id/btn_save_income"

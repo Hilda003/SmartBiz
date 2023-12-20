@@ -90,4 +90,9 @@
     <string name="jacket">Jacket</string>
     <string name="required_field">require field</string>
     <string name="missing_field">please enter field</string>
+    <string name="apakah_yakin_ingin_meninggalkan_halaman">Apakah yakin ingin meninggalkan halaman?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="joshua">Joshua</string>
+    <string name="qty">Qty</string>
 </resources>

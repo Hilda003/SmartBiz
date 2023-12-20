@@ -6,8 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartbiz.databinding.ActivityMerchItemsBinding
 import com.example.smartbiz.databinding.ItemMerchBinding
+import com.example.smartbiz.response.Item
 
 class MerchAdapter(private val context: Context) : RecyclerView.Adapter<MerchAdapter.ViewHolder>() {
+
+    private var data = mutableListOf<Item>()
     class ViewHolder (private val binding : ItemMerchBinding) : RecyclerView.ViewHolder(binding.root) {
 
         val itemName = binding.txtItemName
@@ -22,10 +25,16 @@ class MerchAdapter(private val context: Context) : RecyclerView.Adapter<MerchAda
     }
 
     override fun getItemCount(): Int {
-        return 3
+        return data.size
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val dataItem = data[position]
+        holder.apply {
+            itemName.text = dataItem.namaBarang
+            itemPrice.text = dataItem.hargaBarang.toString()
+            itemQuantity.text = dataItem.jumlahBarang.toString()
+        }
 
     }
 }

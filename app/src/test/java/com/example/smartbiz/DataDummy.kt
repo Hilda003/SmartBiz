@@ -1,16 +1,13 @@
 package com.example.smartbiz
 
-import com.example.smartbiz.response.Payload
-import com.example.smartbiz.response.ResponseLogin
+import com.example.smartbiz.response.Login
 
 object DataDummy {
 
-    fun generateDummyLoginResponse(): ResponseLogin {
-        return ResponseLogin(
-            Payload(
-                "username"
-            ),
-            true
+    fun generateDummyLoginResponse(): Login {
+        return Login(
+            password = "password",
+            username = "username"
 
         )
 

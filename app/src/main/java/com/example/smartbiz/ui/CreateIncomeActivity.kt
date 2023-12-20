@@ -38,20 +38,24 @@ class CreateIncomeActivity : AppCompatActivity() {
             calendar.set(Calendar.MONTH, month)
             calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
             createIncomeViewModel.updateDate(calendar)
-
-
         }
 
 
         binding.ivDate.setOnClickListener {
-
-            startActivity(Intent(this, NotificationActivity::class.java))
+            DatePickerDialog(
+                this,
+                date,
+                calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH)).show()
 
         }
 
         createIncomeViewModel.selectedDate.observe(this, Observer {
             binding.tvDatePicker.text = it
         })
+
+
 
 
 
