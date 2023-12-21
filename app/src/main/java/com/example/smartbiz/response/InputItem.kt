@@ -1,6 +1,5 @@
 package com.example.smartbiz.response
 
-import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
 
 

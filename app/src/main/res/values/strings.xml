@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">SmartBiz</string>
-    <string name="Smart">Smart</string>
-    <string name="Biz">Biz</string>
+    <string name="Smart">SMART</string>
+    <string name="Biz">BIZ</string>
     <string name="skip">Skip</string>
     <string name="iconapp">iconApp</string>
     <string name="title">Create Income</string>
@@ -95,4 +95,7 @@
     <string name="yes">Yes</string>
     <string name="joshua">Joshua</string>
     <string name="qty">Qty</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="sign_in_to_continue">Sign in to continue</string>
+    <string name="selected_item">Selected Item</string>
 </resources>

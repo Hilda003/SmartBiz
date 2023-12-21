@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -23,6 +24,9 @@ class CreateOutcomeActivity : AppCompatActivity() {
         binding = ActivityCreateOutcomeBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+
+
 
         val viewModelFactory = ViewModelFactory.getInstance(this)
         val createOutcomeViewModel : CreateOutcomeViewModel by viewModels {
@@ -72,8 +76,8 @@ class CreateOutcomeActivity : AppCompatActivity() {
 
         binding.btnSaveOutcome.setOnClickListener {
             createOutcomeViewModel.postCreateOutcome(
-                1,
-                1,
+                4,
+                9,
                 binding.tvDatePicker.text.toString(),
                 binding.edtQuantity.text.toString().toInt(),
                 binding.edtPrice.text.toString().toInt(),
@@ -89,7 +93,9 @@ class CreateOutcomeActivity : AppCompatActivity() {
                     }
                     is Result.Error -> {
                         binding.progressBar.visibility = View.GONE
+                        Log.d("Outcome", it.error)
                         Toast.makeText(this, "Input Outcome Failed", Toast.LENGTH_SHORT).show()
+
                     }
                 }
             }

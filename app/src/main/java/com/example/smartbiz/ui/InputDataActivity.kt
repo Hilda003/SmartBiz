@@ -36,7 +36,7 @@ class InputDataActivity : AppCompatActivity() {
 
         binding.btnAdd.setOnClickListener {
             inputItemViewModel.postInputItem(
-                4,
+                14,
                 binding.product.text.toString(),
                 binding.tvQuantity.text.toString().toInt(),
                 binding.priceEditText.text.toString().toInt(),

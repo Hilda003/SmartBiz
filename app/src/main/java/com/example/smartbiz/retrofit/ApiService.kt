@@ -2,16 +2,22 @@ package com.example.smartbiz.retrofit
 
 import retrofit2.Call
 import com.example.smartbiz.response.CreateIncome
+import com.example.smartbiz.response.CreateIncomeRequest
+import com.example.smartbiz.response.DataItem
 import com.example.smartbiz.response.DataProfit
 import com.example.smartbiz.response.Expense
+import com.example.smartbiz.response.GetAllItem
 import com.example.smartbiz.response.InputItem
 import com.example.smartbiz.response.Item
 import com.example.smartbiz.response.Login
 import com.example.smartbiz.response.Register
+import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface ApiService {
 
@@ -35,8 +41,9 @@ interface ApiService {
     suspend fun inputItem(
         @Field("userId") userId: Int,
         @Field("namaBarang") namaBarang: String,
-        @Field("hargaBarang") hargaBarang: Int,
-        @Field("jumlahBarang") jumlahBarang: Int
+        @Field("jumlahBarang") jumlahBarang: Int,
+        @Field("hargaBarang") hargaBarang: Int
+
     ) : InputItem
 
     @FormUrlEncoded
@@ -56,17 +63,20 @@ interface ApiService {
         @Field("userId") userId: Int,
     ) : DataProfit
 
-    @FormUrlEncoded
-    @POST("create_income")
-    suspend fun createIncome(
-        @Field("userId") userId: Int,
-        @Field("barangId") barangId: Int,
-        @Field("tanggal") tanggal: String,
-        @Field("jumlahBarang") jumlahBarang: Int,
-        @Field("HargaBarang") hargaBarang: Int,
-        @Field("total_expense") totalExpense: Int,
+//    @FormUrlEncoded
+//    @POST("create_income")
+//    suspend fun createIncome(
+//        @Field("userId") userId: Int,
+//        @Field("tanggal") tanggal: String,
+//        @Field("namaBarang") namaBarang: String,
+//        @Field("jumlahBarang") jumlahBarang: Int,
+//        @Field("HargaBarang") hargaBarang: Int,
+//        @Field("totalIncome") totalIncome: Int,
+//    ) : CreateIncome
 
-    ) : CreateIncome
+    @POST("create_income")
+    suspend fun createIncome(@Body request: CreateIncomeRequest): CreateIncome
+
 
 
 
@@ -77,9 +87,9 @@ interface ApiService {
 
 
     @GET("get_all_barang/{userId}")
-    suspend fun getAllIncome(
-        @Field("userId") userId: Int
-    ) : Call<List<Item>>
+    suspend fun getAllItem(
+        @Path("userId") userId: Int
+    ) : GetAllItem
 
 
 

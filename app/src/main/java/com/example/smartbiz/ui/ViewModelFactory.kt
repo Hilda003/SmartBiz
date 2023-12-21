@@ -4,9 +4,11 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.smartbiz.data.Repository
+import com.example.smartbiz.viewmodel.CreateIncomeViewModel
 import com.example.smartbiz.viewmodel.CreateOutcomeViewModel
 import com.example.smartbiz.viewmodel.InputItemViewModel
 import com.example.smartbiz.viewmodel.LoginViewModel
+import com.example.smartbiz.viewmodel.MerchItemViewModel
 import com.example.smartbiz.viewmodel.RegisterViewModel
 
 class ViewModelFactory private constructor(private val repository: Repository) : ViewModelProvider.NewInstanceFactory()
@@ -28,6 +30,12 @@ class ViewModelFactory private constructor(private val repository: Repository) :
             }
             modelClass.isAssignableFrom(CreateOutcomeViewModel::class.java) -> {
                 CreateOutcomeViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(CreateIncomeViewModel::class.java) -> {
+                CreateIncomeViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(MerchItemViewModel::class.java) -> {
+                MerchItemViewModel(repository) as T
             }
 
 
