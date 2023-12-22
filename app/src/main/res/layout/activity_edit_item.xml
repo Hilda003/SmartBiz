@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditItemActivity">
+    tools:context=".ui.EditItemActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_merch"
@@ -38,23 +38,23 @@
         android:id="@+id/many_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="296dp"
-        android:layout_marginBottom="368dp"
+        android:layout_marginEnd="244dp"
+        android:layout_marginBottom="364dp"
         android:fontFamily="@font/jost_medium"
-        android:text="@string/how_many"
+        android:text="@string/what_kind_of_item"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
-        android:id="@+id/edtQuantity"
+        android:id="@+id/edtName"
         android:layout_width="330dp"
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="45dp"
         android:autofillHints=""
+        android:fontFamily="@font/jost_medium"
         android:background="@drawable/input_edit_text"
-        android:ems="10"
         android:textColor="@color/black"
         android:inputType="number"
         android:padding="10dp"
@@ -75,7 +75,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.151"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtQuantity" />
+        app:layout_constraintTop_toBottomOf="@+id/edtName" />
 
     <EditText
         android:id="@+id/edtPrice"
@@ -85,9 +85,9 @@
         android:layout_marginEnd="45dp"
         android:autofillHints=""
         android:background="@drawable/input_edit_text"
-        android:ems="10"
         android:inputType="number"
         android:padding="10dp"
+        android:fontFamily="@font/jost_medium"
         android:textColor="@color/black"
         android:singleLine="true"
         app:layout_constraintEnd_toEndOf="parent"
@@ -111,6 +111,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtPrice"
         app:layout_constraintVertical_bias="1.0" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="296dp"
+        android:layout_marginEnd="188dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/edtName" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

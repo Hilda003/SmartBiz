@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartbiz.adapter.MerchAdapter
+import com.example.smartbiz.database.Preferences
 import com.example.smartbiz.databinding.ActivityMerchItemsBinding
 import com.example.smartbiz.viewmodel.MerchItemViewModel
 import kotlinx.coroutines.launch
@@ -17,6 +18,7 @@ class MerchItemsActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMerchItemsBinding
     private lateinit var merchAdapter : MerchAdapter
     private lateinit var recyclerView: RecyclerView
+    private lateinit var preferences: Preferences
 
 
 
@@ -24,6 +26,9 @@ class MerchItemsActivity : AppCompatActivity() {
         binding = ActivityMerchItemsBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+
+        preferences = Preferences(this)
 
         val viewModelFactory = ViewModelFactory.getInstance(this)
         val merchItemViewModel : MerchItemViewModel by viewModels {
@@ -39,11 +44,13 @@ class MerchItemsActivity : AppCompatActivity() {
         }
 
 
-        val userId = 8
+        val userId = preferences.getUserId()
         lifecycleScope.launch {
             val getAllItem = merchItemViewModel.getItemsByUserId(userId)
             merchAdapter.updateData(getAllItem.data)
         }
+
+
 
 
 

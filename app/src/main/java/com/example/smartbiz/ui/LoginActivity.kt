@@ -23,16 +23,13 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        preferences = Preferences(this)
 
 
         val viewModelFactory = ViewModelFactory.getInstance(this)
         val loginViewModel : LoginViewModel by viewModels {
             viewModelFactory
         }
-
-
-
-        preferences = Preferences(this)
 
         binding.btnLogin.setOnClickListener {
             loginViewModel.login(
@@ -46,19 +43,24 @@ class LoginActivity : AppCompatActivity() {
                     is Result.Success -> {
                         binding.progressBar.visibility = View.GONE
                         Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show()
-//                        val response = it.data
-//                        userIdSave(response.loginResult.userId)
+                        val response = it.data
+                        Log.d("Login", response.toString())
+                        tokenSave(response.userId)
+                        Log.d("Login", "User ID saved: ${response.userId}")
                         val intent = Intent(this, InputDataActivity::class.java)
-//                        intent.putExtra("userId", response.loginResult.userId)
                         startActivity(intent)
-                        finish()
+                        Log.d("Login", "Started InputDataActivity")
                     }
                     is Result.Error -> {
                         binding.progressBar.visibility = View.GONE
+                        Log.d("Login", it.error)
                         Toast.makeText(this, it.error, Toast.LENGTH_SHORT).show()
                     }
                 }
             }
+        }
+        binding.tvForgotPassword.setOnClickListener {
+            startActivity(Intent(this, ForgotPasswordActivity::class.java))
         }
 
 
@@ -66,10 +68,10 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
-    private fun userIdSave(userId: Int){
+
+    private fun tokenSave(userId: Int){
         user.userId = userId
         preferences.setUser(user)
-
 
     }
 }

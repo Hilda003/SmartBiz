@@ -26,11 +26,13 @@ import com.example.smartbiz.viewmodel.CreateOutcomeViewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import com.example.smartbiz.data.Result
+import com.example.smartbiz.database.Preferences
 
 class CreateIncomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCreateIncomeBinding
     private val adapter = CreateIncomeAdapter(this)
+    private lateinit var preferences: Preferences
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityCreateIncomeBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
@@ -40,6 +42,8 @@ class CreateIncomeActivity : AppCompatActivity() {
         val createIncomeViewModel: CreateIncomeViewModel by viewModels {
             viewModelFactory
         }
+
+        preferences = Preferences(this)
 
         setupSpinner()
 
@@ -89,11 +93,13 @@ class CreateIncomeActivity : AppCompatActivity() {
             }
         })
 
+        val userId = preferences.getUserId()
+
         binding.btnSaveIncome.setOnClickListener {
             val createIncomeRequest = CreateIncomeRequest(
-                14,
+                userId,
                 binding.tvDatePicker.text.toString(),
-                "roti",
+                binding.dropdownMenu.selectedItem.toString(),
                 binding.edtQuantity.text.toString().toInt(),
                 binding.edtPrice.text.toString().toInt(),
                 binding.txtTotal.text.toString().toInt()

@@ -6,11 +6,14 @@ import androidx.lifecycle.liveData
 import com.example.smartbiz.response.CreateIncome
 import com.example.smartbiz.response.CreateIncomeRequest
 import com.example.smartbiz.response.DataItem
+import com.example.smartbiz.response.EditItem
 import com.example.smartbiz.response.Expense
+import com.example.smartbiz.response.ForgotPasswordRequest
 import com.example.smartbiz.response.GetAllItem
 import com.example.smartbiz.response.InputItem
 import com.example.smartbiz.response.Login
 import com.example.smartbiz.response.Register
+import com.example.smartbiz.response.ResponseLogin
 import com.example.smartbiz.retrofit.ApiService
 import retrofit2.Response
 
@@ -21,7 +24,7 @@ class Repository(
     fun postLogin(
         username: String,
         password: String
-    ) : LiveData<Result<Login>> = liveData {
+    ) : LiveData<Result<ResponseLogin>> = liveData {
         emit(Result.Loading)
         try {
             val response = apiService.loginResponse(username, password)
@@ -95,6 +98,20 @@ class Repository(
         return apiService.getAllItem(userId)
     }
 
+    suspend fun editBarang(barangId: Int, editedBarang: EditItem): Result<EditItem> {
+        return try {
+            val response = apiService.editBarang(barangId, editedBarang)
+            if (response.isSuccessful) {
+                Result.Success(response.body()!!)
 
+            } else {
+                Log.d("EditItemError", response.message())
+                Result.Error(response.message())
+            }
+        } catch (e: Exception) {
+            Result.Error(e.message ?: "Unknown error")
+        }
+    }
 
+    suspend fun requestToken(email: String) = apiService.requestResetToken(ForgotPasswordRequest(email))
 }

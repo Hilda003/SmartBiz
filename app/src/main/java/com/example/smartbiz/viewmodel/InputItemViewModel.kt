@@ -6,7 +6,7 @@ import com.example.smartbiz.data.Repository
 class InputItemViewModel(private val repository: Repository) : ViewModel() {
 
     fun postInputItem(
-        userId : Int,
+        userId: Int,
         namaBarang: String,
         hargaBarang: Int,
         jumlahBarang: Int

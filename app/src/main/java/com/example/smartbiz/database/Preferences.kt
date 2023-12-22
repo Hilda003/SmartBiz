@@ -1,6 +1,7 @@
 package com.example.smartbiz.database
 
 import android.content.Context
+import android.util.Log
 
 
 class Preferences (context: Context) {
@@ -8,7 +9,7 @@ private val preferences = context.getSharedPreferences("preferences", Context.MO
 
     fun setUser(user: User){
         val editor = preferences.edit()
-        editor.putInt("userId", user.userId!!)
+        user.userId?.let { editor.putInt("userId", it) }
         editor.apply()
     }
 
@@ -17,4 +18,12 @@ private val preferences = context.getSharedPreferences("preferences", Context.MO
         user.userId = preferences.getInt("userId", 0)
         return user
     }
+    fun getUserId(): Int {
+        val userId = preferences.getInt("userId", 0)
+        Log.d("Preferences", "User ID retrieved: $userId")
+        return userId
+
+    }
+
+
 }

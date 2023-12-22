@@ -5,5 +5,5 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class User(
-    var userId: Int? = null,
+    var userId: Int? = 0
 ) : Parcelable

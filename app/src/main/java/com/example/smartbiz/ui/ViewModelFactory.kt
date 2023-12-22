@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.smartbiz.data.Repository
 import com.example.smartbiz.viewmodel.CreateIncomeViewModel
 import com.example.smartbiz.viewmodel.CreateOutcomeViewModel
+import com.example.smartbiz.viewmodel.EditItemViewModel
+import com.example.smartbiz.viewmodel.ForgotPasswordViewModel
 import com.example.smartbiz.viewmodel.InputItemViewModel
 import com.example.smartbiz.viewmodel.LoginViewModel
 import com.example.smartbiz.viewmodel.MerchItemViewModel
@@ -37,10 +39,12 @@ class ViewModelFactory private constructor(private val repository: Repository) :
             modelClass.isAssignableFrom(MerchItemViewModel::class.java) -> {
                 MerchItemViewModel(repository) as T
             }
-
-
-
-
+            modelClass.isAssignableFrom(EditItemViewModel::class.java) -> {
+                EditItemViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(ForgotPasswordViewModel::class.java) -> {
+                ForgotPasswordViewModel(repository) as T
+            }
 
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

@@ -5,18 +5,24 @@ import com.example.smartbiz.response.CreateIncome
 import com.example.smartbiz.response.CreateIncomeRequest
 import com.example.smartbiz.response.DataItem
 import com.example.smartbiz.response.DataProfit
+import com.example.smartbiz.response.EditItem
 import com.example.smartbiz.response.Expense
+import com.example.smartbiz.response.ForgotPasswordRequest
 import com.example.smartbiz.response.GetAllItem
 import com.example.smartbiz.response.InputItem
 import com.example.smartbiz.response.Item
 import com.example.smartbiz.response.Login
 import com.example.smartbiz.response.Register
+import com.example.smartbiz.response.ResetToken
+import com.example.smartbiz.response.ResponseLogin
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface ApiService {
@@ -26,7 +32,7 @@ interface ApiService {
     suspend fun loginResponse(
         @Field("username") username: String,
         @Field("password") password: String
-    ): Login
+    ): ResponseLogin
 
     @FormUrlEncoded
     @POST("signup")
@@ -63,22 +69,9 @@ interface ApiService {
         @Field("userId") userId: Int,
     ) : DataProfit
 
-//    @FormUrlEncoded
-//    @POST("create_income")
-//    suspend fun createIncome(
-//        @Field("userId") userId: Int,
-//        @Field("tanggal") tanggal: String,
-//        @Field("namaBarang") namaBarang: String,
-//        @Field("jumlahBarang") jumlahBarang: Int,
-//        @Field("HargaBarang") hargaBarang: Int,
-//        @Field("totalIncome") totalIncome: Int,
-//    ) : CreateIncome
 
     @POST("create_income")
     suspend fun createIncome(@Body request: CreateIncomeRequest): CreateIncome
-
-
-
 
     @GET("get_all_transactions/{userId}")
     suspend fun getAllTransactions(
@@ -91,8 +84,15 @@ interface ApiService {
         @Path("userId") userId: Int
     ) : GetAllItem
 
+    @PUT("/edit_barang/{barangId}")
+    suspend fun editBarang(
+        @Path("barangId") barangId: Int,
+        @Body editedBarang: EditItem
+    ): Response<EditItem>
 
 
+    @POST("/forgot-password")
+    suspend fun requestResetToken(@Body request: ForgotPasswordRequest): ResetToken
 
 
 }
