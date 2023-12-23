@@ -44,6 +44,7 @@ class LoginActivity : AppCompatActivity() {
                         binding.progressBar.visibility = View.GONE
                         Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show()
                         val response = it.data
+                        intent.putExtra("username", response.userId.toString())
                         Log.d("Login", response.toString())
                         tokenSave(response.userId)
                         Log.d("Login", "User ID saved: ${response.userId}")

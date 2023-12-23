@@ -3,6 +3,7 @@ package com.example.smartbiz.data
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
+import com.example.smartbiz.response.CreateExpense
 import com.example.smartbiz.response.CreateIncome
 import com.example.smartbiz.response.CreateIncomeRequest
 import com.example.smartbiz.response.DataItem
@@ -10,8 +11,11 @@ import com.example.smartbiz.response.EditItem
 import com.example.smartbiz.response.Expense
 import com.example.smartbiz.response.ForgotPasswordRequest
 import com.example.smartbiz.response.GetAllItem
+import com.example.smartbiz.response.GetDetailProfile
+import com.example.smartbiz.response.History
 import com.example.smartbiz.response.InputItem
 import com.example.smartbiz.response.Login
+import com.example.smartbiz.response.Profit
 import com.example.smartbiz.response.Register
 import com.example.smartbiz.response.ResponseLogin
 import com.example.smartbiz.retrofit.ApiService
@@ -70,23 +74,8 @@ class Repository(
     }
 
 
-    fun postCreateExpense(
-        userId: Int,
-        barangId: Int,
-        tanggal: String,
-        jumlahBarang: Int,
-        hargaBarang: Int,
-        totalExpense: Int
-    ) : LiveData<Result<Expense>> = liveData {
-        emit(Result.Loading)
-        try {
-            val response = apiService.createExpense(userId,barangId, tanggal, jumlahBarang, hargaBarang, totalExpense)
-            emit(Result.Success(response))
-        }
-        catch (e: Exception){
-            Log.d("Create Expense Error", e.message.toString())
-            emit(Result.Error(e.message.toString()))
-        }
+    suspend fun postCreateExpense(expense: Expense) : CreateExpense  {
+        return apiService.createExpense(expense)
     }
 
     suspend fun postCreateIncome(createIncomeRequest: CreateIncomeRequest) : CreateIncome {
@@ -96,6 +85,17 @@ class Repository(
 
     suspend fun getItemByUserId(userId: Int) : GetAllItem {
         return apiService.getAllItem(userId)
+    }
+    suspend fun getDetailProfile(userId: Int) : GetDetailProfile {
+        return apiService.getDetailProfile(userId)
+    }
+
+    suspend fun getHistory(userId: Int) : History {
+        return apiService.getHistory(userId)
+    }
+
+    suspend fun getAllTransaction(userId: Int) : Profit {
+        return apiService.getAllTransaction(userId)
     }
 
     suspend fun editBarang(barangId: Int, editedBarang: EditItem): Result<EditItem> {

@@ -1,5 +1,6 @@
 package com.example.smartbiz.ui
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
@@ -26,6 +27,7 @@ class InputDataActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityInputDataBinding
     private lateinit var preferences: Preferences
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityInputDataBinding.inflate(layoutInflater)
@@ -41,6 +43,8 @@ class InputDataActivity : AppCompatActivity() {
             viewModelFactory
         }
 
+        binding.txtDesc.text = "Hello, ${preferences.getUsername()} Welcome to SmartBiz!"
+
 
 
 
@@ -55,10 +59,10 @@ class InputDataActivity : AppCompatActivity() {
                 try {
                     val userId = preferences.getUserId()
                     inputItemViewModel.postInputItem(
-                        userId,  // Ganti dari userId.userId!! menjadi userId saja
+                        userId,
                         product,
-                        quantity.toInt(),  // Ubah menjadi tipe data Int
-                        price.toInt()      // Ubah menjadi tipe data Int
+                        quantity.toInt(),
+                        price.toInt()
                     ).observe(this) {
                         when (it) {
                             is Result.Loading -> {

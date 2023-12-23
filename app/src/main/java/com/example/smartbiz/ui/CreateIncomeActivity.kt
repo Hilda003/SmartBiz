@@ -2,7 +2,6 @@ package com.example.smartbiz.ui
 
 
 import android.app.DatePickerDialog
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -15,15 +14,11 @@ import android.widget.Toast
 
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.smartbiz.R
 import com.example.smartbiz.adapter.CreateIncomeAdapter
 
 import com.example.smartbiz.databinding.ActivityCreateIncomeBinding
 import com.example.smartbiz.response.CreateIncomeRequest
 import com.example.smartbiz.viewmodel.CreateIncomeViewModel
-import com.example.smartbiz.viewmodel.CreateOutcomeViewModel
-import java.text.SimpleDateFormat
 import java.util.Calendar
 import com.example.smartbiz.data.Result
 import com.example.smartbiz.database.Preferences
@@ -31,7 +26,6 @@ import com.example.smartbiz.database.Preferences
 class CreateIncomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCreateIncomeBinding
-    private val adapter = CreateIncomeAdapter(this)
     private lateinit var preferences: Preferences
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityCreateIncomeBinding.inflate(layoutInflater)
@@ -99,7 +93,7 @@ class CreateIncomeActivity : AppCompatActivity() {
             val createIncomeRequest = CreateIncomeRequest(
                 userId,
                 binding.tvDatePicker.text.toString(),
-                binding.dropdownMenu.selectedItem.toString(),
+                "coklat",
                 binding.edtQuantity.text.toString().toInt(),
                 binding.edtPrice.text.toString().toInt(),
                 binding.txtTotal.text.toString().toInt()
@@ -135,7 +129,7 @@ class CreateIncomeActivity : AppCompatActivity() {
     }
 
     private fun setupSpinner(){
-        val itemName = arrayOf("Telor", "Permen", "Jelly", "Shoes")
+        val itemName = arrayOf("coklat")
         val spinner = binding.dropdownMenu
         val adapter = ArrayAdapter(this, com.google.android.material.R.layout.support_simple_spinner_dropdown_item, itemName)
         spinner.adapter = adapter

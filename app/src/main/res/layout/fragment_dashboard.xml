@@ -7,18 +7,19 @@
     android:background="@color/black"
     tools:context=".ui.DashboardFragment">
 
-<TextView
-    android:id="@+id/tv_user"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="@string/hallo_user"
-    android:layout_marginTop="100dp"
-    android:fontFamily="@font/jost_medium"
-    android:textSize="20sp"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
+    <TextView
+        android:id="@+id/tv_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="104dp"
+        android:fontFamily="@font/jost_medium"
+        android:text="@string/hallo_user"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.574"
 
-    app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:id="@+id/layout_income"
@@ -144,7 +145,17 @@
             android:text="@string/insight_business"/>
     </LinearLayout>
 
-
+<!--    <TextView-->
+<!--        android:id="@+id/textView15"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="149dp"-->
+<!--        android:layout_marginTop="104dp"-->
+<!--        android:fontFamily="@font/jost_medium"-->
+<!--        android:text="@string/halo"-->
+<!--        android:textSize="20sp"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

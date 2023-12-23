@@ -25,5 +25,11 @@ private val preferences = context.getSharedPreferences("preferences", Context.MO
 
     }
 
+    fun getUsername(): String {
+        val username = preferences.getString("username", "").toString()
+        Log.d("Preferences", "Username retrieved: $username")
+        return username
+    }
+
 
 }

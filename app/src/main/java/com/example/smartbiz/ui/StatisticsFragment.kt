@@ -1,27 +1,29 @@
 package com.example.smartbiz.ui
 
-import android.animation.Animator
-import android.animation.ValueAnimator
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.viewModels
 import com.example.smartbiz.R
+import com.example.smartbiz.database.Preferences
+import com.example.smartbiz.database.User
 import com.example.smartbiz.databinding.FragmentStatisticsBinding
-import com.example.smartbiz.retrofit.ApiConfig
-import com.example.smartbiz.retrofit.ApiService
+import com.example.smartbiz.viewmodel.StatisticViewModel
 import com.github.mikephil.charting.components.Legend
-import kotlinx.coroutines.launch
 
 
 class StatisticsFragment : Fragment() {
-    private lateinit var apiService: ApiService
-   private lateinit var binding : FragmentStatisticsBinding
 
+    private lateinit var binding : FragmentStatisticsBinding
+    private lateinit var user: User
+    private lateinit var preferences: Preferences
 
+    private val statisticViewModel: StatisticViewModel by viewModels {
+        ViewModelFactory.getInstance(requireContext())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,14 +35,12 @@ class StatisticsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        apiService = ApiConfig.getApiService()
-
-
-
+        preferences = Preferences(requireContext())
+        user = preferences.getUser()
+        preferences = Preferences(requireContext())
+        observeUserData()
+        fetchData()
     }
-
-
-
 
     private fun setUpPieChart() = with(binding.expenseChart) {
         isDrawHoleEnabled = true
@@ -59,9 +59,24 @@ class StatisticsFragment : Fragment() {
 
     }
 
-    private fun chartData() {
 
+    private fun fetchData() {
+        user.userId?.let { statisticViewModel.getAllTransaction(it) }
+    }
+
+    private fun observeUserData() {
+        statisticViewModel.userData.observe(viewLifecycleOwner) {result ->
+            result?.data?.let { profit ->
+                binding.apply {
+                    priceIncome.text = "Rp. ${profit.totalIncome}"
+                    priceExpense.text = "Rp. ${profit.totalExpense}"
+                }
+            }
+
+
+
+            }
+        }
     }
 
 
-}

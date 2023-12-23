@@ -42,7 +42,7 @@
     <string name="your_items">Your Items</string>
     <string name="insight">Insight</string>
     <string name="insight_business">Insight Business</string>
-    <string name="hallo_user">Hallo, User!</string>
+    <string name="hallo_user">User!</string>
     <string name="notification">Notification</string>
     <string name="help">help</string>
     <string name="delete">delete</string>
@@ -97,4 +97,7 @@
     <string name="welcome_back">Welcome Back</string>
     <string name="sign_in_to_continue">Sign in to continue</string>
     <string name="selected_item">Selected Item</string>
+    <string name="halo">Halo,</string>
+    <string name="sort_by_income">Sort by Income</string>
+    <string name="sort_by_expense">Sort by Expense</string>
 </resources>

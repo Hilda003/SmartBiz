@@ -1,5 +1,6 @@
 package com.example.smartbiz.retrofit
 
+import com.example.smartbiz.response.CreateExpense
 import retrofit2.Call
 import com.example.smartbiz.response.CreateIncome
 import com.example.smartbiz.response.CreateIncomeRequest
@@ -9,9 +10,10 @@ import com.example.smartbiz.response.EditItem
 import com.example.smartbiz.response.Expense
 import com.example.smartbiz.response.ForgotPasswordRequest
 import com.example.smartbiz.response.GetAllItem
+import com.example.smartbiz.response.GetDetailProfile
+import com.example.smartbiz.response.History
 import com.example.smartbiz.response.InputItem
-import com.example.smartbiz.response.Item
-import com.example.smartbiz.response.Login
+import com.example.smartbiz.response.Profit
 import com.example.smartbiz.response.Register
 import com.example.smartbiz.response.ResetToken
 import com.example.smartbiz.response.ResponseLogin
@@ -20,7 +22,6 @@ import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
@@ -49,40 +50,36 @@ interface ApiService {
         @Field("namaBarang") namaBarang: String,
         @Field("jumlahBarang") jumlahBarang: Int,
         @Field("hargaBarang") hargaBarang: Int
-
     ) : InputItem
-
-    @FormUrlEncoded
-    @POST("create_expense")
-    suspend fun createExpense(
-        @Field("userId") userId: Int,
-        @Field("barangId") barangId: Int,
-        @Field("tanggal") tanggal: String,
-        @Field("jumlahBarang") jumlahBarang: Int,
-        @Field("HargaBarang") hargaBarang: Int,
-        @Field("total_expense") totalExpense: Int,
-    ) : Expense
-
-    @FormUrlEncoded
-    @POST("total_profit/{userId}")
-    suspend fun getTotalProfit(
-        @Field("userId") userId: Int,
-    ) : DataProfit
-
 
     @POST("create_income")
     suspend fun createIncome(@Body request: CreateIncomeRequest): CreateIncome
+    @POST("create_expense")
+    suspend fun createExpense(@Body request: Expense): CreateExpense
 
-    @GET("get_all_transactions/{userId}")
-    suspend fun getAllTransactions(
-        @Field("userId") userId: Int
-    ) : Call<List<DataProfit>>
 
 
     @GET("get_all_barang/{userId}")
     suspend fun getAllItem(
         @Path("userId") userId: Int
     ) : GetAllItem
+
+    @GET("get_profile/{userId}")
+    suspend fun getDetailProfile(
+        @Path("userId") userId: Int
+    ) : GetDetailProfile
+
+    @GET("history/{userId}")
+    suspend fun getHistory(
+        @Path("userId") userId: Int
+    ) : History
+
+    @GET("user_profit/{userId}")
+    suspend fun getAllTransaction(
+        @Path("userId") userId: Int
+    ) : Profit
+
+
 
     @PUT("/edit_barang/{barangId}")
     suspend fun editBarang(

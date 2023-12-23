@@ -7,31 +7,35 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.example.smartbiz.data.Result
+import com.example.smartbiz.database.Preferences
 import com.example.smartbiz.databinding.ActivityCreateOutcomeBinding
-import com.example.smartbiz.viewmodel.CreateOutcomeViewModel
+import com.example.smartbiz.response.Expense
+import com.example.smartbiz.viewmodel.CreateExpenseViewModel
+import com.google.android.material.R
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
 
 class CreateOutcomeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCreateOutcomeBinding
-
+    private lateinit var preferences: Preferences
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityCreateOutcomeBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-
-
-
         val viewModelFactory = ViewModelFactory.getInstance(this)
-        val createOutcomeViewModel : CreateOutcomeViewModel by viewModels {
+        val createExpenseViewModel: CreateExpenseViewModel by viewModels {
             viewModelFactory
         }
+        preferences = Preferences(this)
+        setupSpinner()
 
         val calendar = Calendar.getInstance()
         val date = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
@@ -39,7 +43,7 @@ class CreateOutcomeActivity : AppCompatActivity() {
             calendar.set(Calendar.YEAR, year)
             calendar.set(Calendar.MONTH, month)
             calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-            updateDate(calendar)
+            createExpenseViewModel.updateDate(calendar)
         }
 
         binding.ivDate.setOnClickListener {
@@ -51,6 +55,10 @@ class CreateOutcomeActivity : AppCompatActivity() {
                 calendar.get(Calendar.MONTH),
                 calendar.get(Calendar.DAY_OF_MONTH)).show()
         }
+
+        createExpenseViewModel.selectedDate.observe(this, Observer {
+            binding.tvDatePicker.text = it
+        })
         binding.edtQuantity.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
@@ -71,47 +79,38 @@ class CreateOutcomeActivity : AppCompatActivity() {
                 updateTotal()
             }
         })
-
-
+        val userId = preferences.getUserId()
 
         binding.btnSaveOutcome.setOnClickListener {
-            createOutcomeViewModel.postCreateOutcome(
-                4,
-                9,
+            val createExpense = Expense(
+                userId,
                 binding.tvDatePicker.text.toString(),
+                "coklat",
                 binding.edtQuantity.text.toString().toInt(),
                 binding.edtPrice.text.toString().toInt(),
                 binding.txtTotal.text.toString().toInt()
-            ).observe(this) {
-                when (it) {
-                    is Result.Loading -> {
-                        binding.progressBar.visibility = View.VISIBLE
-                    }
-                    is Result.Success -> {
-                        binding.progressBar.visibility = View.GONE
-                        Toast.makeText(this, "Input Outcome Success", Toast.LENGTH_SHORT).show()
-                    }
-                    is Result.Error -> {
-                        binding.progressBar.visibility = View.GONE
-                        Log.d("Outcome", it.error)
-                        Toast.makeText(this, "Input Outcome Failed", Toast.LENGTH_SHORT).show()
+            )
+            createExpenseViewModel.createExpense(createExpense)
+        }
+        createExpenseViewModel.createExpenseResult.observe(this) {
+            when (it) {
+                is Result.Loading -> {
+                    binding.progressBar.visibility = View.VISIBLE
+                }
 
-                    }
+                is Result.Success -> {
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(this, "Create Expense Success", Toast.LENGTH_SHORT).show()
+                }
+
+                is Result.Error -> {
+                    binding.progressBar.visibility = View.GONE
+                    Toast.makeText(this, it.error, Toast.LENGTH_SHORT).show()
                 }
             }
         }
 
 
-
-
-
-
-
-    }
-    private fun updateDate(calendar: Calendar) {
-        val format = "dd-MM-yyyy"
-        val sdf = SimpleDateFormat(format, Locale.getDefault())
-        binding.tvDatePicker.tag = sdf.format(calendar.time)
     }
 
 
@@ -123,6 +122,28 @@ class CreateOutcomeActivity : AppCompatActivity() {
         binding.txtTotal.text = total.toString()
     }
 
+    private fun setupSpinner(){
+        val itemName = arrayOf("coklat")
+        val spinner = binding.dropdownMenu
+        val adapter = ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, itemName)
+        spinner.adapter = adapter
+
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                Toast.makeText(this@CreateOutcomeActivity, "Selected item: ${itemName[position]}", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                Toast.makeText(this@CreateOutcomeActivity, "No item selected", Toast.LENGTH_SHORT).show()
+            }
+
+        }
+    }
 
 
 

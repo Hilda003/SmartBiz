@@ -13,6 +13,9 @@ class DashboardFragment : Fragment() {
 
     private lateinit var binding: FragmentDashboardBinding
 
+
+
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -32,6 +35,9 @@ class DashboardFragment : Fragment() {
         binding.layoutInsight.setOnClickListener {
             startActivity(Intent(context, InsightBusinessActivity::class.java))
         }
+
+        val username = arguments?.getString("username")
+        binding.tvUser.text = "Hello, $username"
     }
 
 

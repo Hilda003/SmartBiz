@@ -11,5 +11,11 @@ data class ResponseLogin(
 	val status: String,
 
 	@field:SerializedName("userId")
-	val userId: Int
+	val userId: Int,
+
+	@field:SerializedName("password")
+	val password: String,
+
+	@field:SerializedName("username")
+	val username: String,
 )
