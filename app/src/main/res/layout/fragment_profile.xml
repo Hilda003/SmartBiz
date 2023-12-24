@@ -62,7 +62,7 @@
             android:id="@+id/tv_name_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/joshua"
+            android:text="@string/username"
             android:fontFamily="@font/jost_medium"
             android:textSize="20sp"
             android:layout_marginTop="7dp"
@@ -131,7 +131,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/hilda77"
+                android:text="@string/username"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -141,7 +141,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/hilda_gmail_com"
+                android:text="@string/tv_email"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_username" />
 
@@ -180,17 +180,20 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/edt_edit" />
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="105dp"
+            android:visibility="gone"
+            android:indeterminateTint="@color/yellow_01"
+            app:layout_constraintEnd_toStartOf="@+id/edt_edit"
+            app:layout_constraintTop_toBottomOf="@+id/tv_name_user" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-
-
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

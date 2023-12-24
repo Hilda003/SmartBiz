@@ -1,8 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/menu_income"
-        android:title="@string/sort_by_income" />
+        android:id="@+id/menu_date"
+        android:title="@string/tanggal" />
     <item
-        android:id="@+id/menu_expense"
-        android:title="@string/sort_by_expense" />
+        android:id="@+id/menu_price"
+        android:title="@string/harga" />
 </menu>

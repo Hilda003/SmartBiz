@@ -30,7 +30,7 @@
         android:layout_marginTop="20dp"
         android:fontFamily="@font/jost_medium"
         android:padding="10dp"
-        android:text="@string/desc"
+        android:text="@string/desc_income"
         android:textAlignment="center"
         android:textColor="@color/white" />
 

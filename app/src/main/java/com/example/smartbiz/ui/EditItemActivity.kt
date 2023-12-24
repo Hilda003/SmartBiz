@@ -24,9 +24,6 @@ class EditItemActivity : AppCompatActivity() {
         val itemName = intent.getStringExtra("itemName")
         val itemPrice = intent.getIntExtra("itemPrice", 0)
 
-
-        // Gunakan data yang diterima untuk mengisi formulir atau melakukan tindakan lain
-
         binding.edtName.setText(itemName)
         binding.edtPrice.setText(itemPrice.toString())
 
@@ -35,10 +32,6 @@ class EditItemActivity : AppCompatActivity() {
         val editItemViewModel: EditItemViewModel by viewModels {
             viewModelFactory
         }
-
-
-
-
 
         binding.buttonSave.setOnClickListener {
 
@@ -56,7 +49,6 @@ class EditItemActivity : AppCompatActivity() {
                 namaBarang = name,
                 hargaBarang = price
             )
-            editItemViewModel.editBarang(barangId, editItem)
 
         }
         editItemViewModel.editBarangResult.observe(this) {

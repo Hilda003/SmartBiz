@@ -5,7 +5,10 @@
     <string name="skip">Skip</string>
     <string name="iconapp">iconApp</string>
     <string name="title">Create Income</string>
-    <string name="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus, atque consectetur ea eveniet impedit inventore perferendis possimus sapiente tempora. Commodi consequatur maiores minus nisi praesentium quae qui, tempora! Ea, quisquam!</string>
+    <string name="desc_income">Feel free to input your sales revenue for your products here, and you will also receive notifications if your product stock is less than 10. </string>
+    <string name="desc_outcome">You can add your product purchases for restocking and also input the purchase prices for later profit calculations. </string>
+    <string name="desc_items">Here contains information about the products available in your sales, as well as features to change the name and price of the products, and a delete feature. </string>
+    <string name="desc_insight"> Learn more about when your products will run out and how your sales predictions look.</string>
     <string name="next">Next</string>
     <string name="tv_email">Email</string>
     <string name="tv_password">Password</string>
@@ -98,6 +101,15 @@
     <string name="sign_in_to_continue">Sign in to continue</string>
     <string name="selected_item">Selected Item</string>
     <string name="halo">Halo,</string>
-    <string name="sort_by_income">Sort by Income</string>
-    <string name="sort_by_expense">Sort by Expense</string>
+    <string name="sort_by_income">Filter by Income</string>
+    <string name="sort_by_expense">Filter by Expense</string>
+    <string name="harga">Harga</string>
+    <string name="tanggal">Tanggal</string>
+    <string name="send_email">Send Email</string>
+    <string name="save_password">Save Password</string>
+    <string name="recovery_password">Recovery password</string>
+    <string name="your_token">your token</string>
+    <string name="new_password">new password</string>
+    <string name="rp2_000_000">Rp2.000.000</string>
+    <string name="rp">Rp</string>
 </resources>

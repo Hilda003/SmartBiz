@@ -3,16 +3,12 @@ package com.example.smartbiz.ui
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.Window
 import android.widget.Toast
 import androidx.activity.viewModels
-
 import androidx.core.graphics.drawable.toDrawable
 import com.example.smartbiz.MainActivity
 import com.example.smartbiz.R
@@ -20,6 +16,7 @@ import com.example.smartbiz.data.*
 import com.example.smartbiz.database.Preferences
 import com.example.smartbiz.databinding.ActivityInputDataBinding
 import com.example.smartbiz.databinding.PopupDialogBinding
+import com.example.smartbiz.databinding.PopupInputBinding
 import com.example.smartbiz.viewmodel.InputItemViewModel
 
 
@@ -35,18 +32,10 @@ class InputDataActivity : AppCompatActivity() {
 
         preferences = Preferences(this)
 
-
-
-
         val viewModelFactory = ViewModelFactory.getInstance(this)
         val inputItemViewModel : InputItemViewModel by viewModels {
             viewModelFactory
         }
-
-        binding.txtDesc.text = "Hello, ${preferences.getUsername()} Welcome to SmartBiz!"
-
-
-
 
         binding.btnAdd.setOnClickListener {
             val product = binding.product.text.toString().trim()
@@ -55,7 +44,12 @@ class InputDataActivity : AppCompatActivity() {
 
             if (product.isEmpty() || quantity.isEmpty() || price.isEmpty()) {
                 Toast.makeText(this, "Please fill all the fields", Toast.LENGTH_SHORT).show()
-            } else {
+            } else if (quantity.toInt() <= 0 || price.toInt() <= 0) {
+                Toast.makeText(this, "Quantity and price must be greater than 0", Toast.LENGTH_SHORT).show()
+            } else if (!product.matches(Regex("[a-zA-Z]+\$"))) {
+                Toast.makeText(this, "Invalid product format. Product should be a text, not a number", Toast.LENGTH_SHORT).show()
+            }
+            else {
                 try {
                     val userId = preferences.getUserId()
                     inputItemViewModel.postInputItem(
@@ -70,20 +64,18 @@ class InputDataActivity : AppCompatActivity() {
                             }
                             is Result.Success -> {
                                 binding.progressBar.visibility = View.GONE
-                                Toast.makeText(this, "Input Data Success", Toast.LENGTH_SHORT).show()
+                                showDialogSuccess()
                                 binding.product.text.clear()
                                 binding.tvQuantity.text.clear()
                                 binding.priceEditText.text.clear()
                             }
                             is Result.Error -> {
                                 binding.progressBar.visibility = View.GONE
-                                Log.d("InputError", it.error)
-                                Toast.makeText(this, "Input Data Failed", Toast.LENGTH_SHORT).show()
+                                showDialogError()
                             }
                         }
                     }
                 } catch (e: NumberFormatException) {
-                    // Tangani jika ada kesalahan konversi ke tipe data Int
                     Toast.makeText(this, "Invalid quantity or price format", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -112,5 +104,28 @@ class InputDataActivity : AppCompatActivity() {
         }
         dialog.show()
 
+    }
+
+    private fun showDialogError() {
+        showDialogData("Input data failed", R.drawable.cancel)
+    }
+    private fun showDialogSuccess() {
+        showDialogData("Input data success", R.drawable.check_circle)
+    }
+
+    private fun showDialogData(message: String, iconResId: Int) {
+        val binding = PopupInputBinding.inflate(layoutInflater)
+        binding.message.text = message
+        binding.icon.setImageResource(iconResId)
+
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(binding.root)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        binding.btnOk.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
     }
 }

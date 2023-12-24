@@ -16,6 +16,7 @@ import com.example.smartbiz.response.History
 import com.example.smartbiz.response.InputItem
 import com.example.smartbiz.response.Login
 import com.example.smartbiz.response.Profit
+import com.example.smartbiz.response.RecoveryPassword
 import com.example.smartbiz.response.Register
 import com.example.smartbiz.response.ResponseLogin
 import com.example.smartbiz.retrofit.ApiService
@@ -98,19 +99,10 @@ class Repository(
         return apiService.getAllTransaction(userId)
     }
 
-    suspend fun editBarang(barangId: Int, editedBarang: EditItem): Result<EditItem> {
-        return try {
-            val response = apiService.editBarang(barangId, editedBarang)
-            if (response.isSuccessful) {
-                Result.Success(response.body()!!)
 
-            } else {
-                Log.d("EditItemError", response.message())
-                Result.Error(response.message())
-            }
-        } catch (e: Exception) {
-            Result.Error(e.message ?: "Unknown error")
-        }
+    suspend fun recoverPassword(email: String, token: String, newPassword: String): Response<RecoveryPassword> {
+        val request = RecoveryPassword(email, token, newPassword)
+        return apiService.recoverPassword(request)
     }
 
     suspend fun requestToken(email: String) = apiService.requestResetToken(ForgotPasswordRequest(email))

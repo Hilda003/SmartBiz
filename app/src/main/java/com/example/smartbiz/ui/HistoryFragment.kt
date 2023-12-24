@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.PopupMenu
+import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -29,7 +31,9 @@ class HistoryFragment : Fragment() {
     private lateinit var historyAdapter: HistoryAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var preferences: Preferences
+    private lateinit var progressBar: ProgressBar
     private var isFilteringByType = true
+    private var isSortingByDate = true
 
 
     private val historyViewModel: HistoryViewModel by viewModels {
@@ -49,6 +53,7 @@ class HistoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         preferences = Preferences(requireContext())
 
+        progressBar = binding.progressBar
         recyclerView = binding.recyclerView
         historyAdapter = HistoryAdapter(emptyList())
         recyclerView.apply {
@@ -59,10 +64,11 @@ class HistoryFragment : Fragment() {
         val userId = preferences.getUserId()
         lifecycleScope.launch {
             val getAllHistory = historyViewModel.getHistory(userId)
-            historyAdapter.updateData(getAllHistory.data)
+            updateHistory(getAllHistory.data)
         }
 
         binding.imgFilter.setOnClickListener {
+            showFilterMenu(it)
 
         }
         binding.imgSort.setOnClickListener {
@@ -72,9 +78,9 @@ class HistoryFragment : Fragment() {
         }
     }
 
-    private fun showSortMenu(view: View) {
+    private fun showFilterMenu(view: View) {
         val menu = PopupMenu(requireContext(), view)
-        menu.inflate(R.menu.sort_menu)
+        menu.inflate(R.menu.filter_menu)
         menu.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.menu_income -> {
@@ -85,6 +91,27 @@ class HistoryFragment : Fragment() {
                 R.id.menu_expense -> {
                     isFilteringByType = false
                     filterHistoryList()
+                    true
+                }
+                else -> false
+            }
+        }
+        menu.show()
+    }
+
+    private fun showSortMenu(view: View) {
+        val menu = PopupMenu(requireContext(), view)
+        menu.inflate(R.menu.sort_menu)
+        menu.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.menu_date -> {
+                    isFilteringByType = true
+                    sortHistoryList()
+                    true
+                }
+                R.id.menu_price -> {
+                    isFilteringByType = false
+                    sortHistoryList()
                     true
                 }
                 else -> false
@@ -110,9 +137,32 @@ class HistoryFragment : Fragment() {
     }
 
     private fun sortHistoryList() {
+        lifecycleScope.launch {
+            val userId = preferences.getUserId()
+            val getAllHistory = historyViewModel.getHistory(userId)
+            val sortedHistory = if (isFilteringByType) {
+                getAllHistory.data.sortedBy { it.tanggal }
+            }
+            else {
+                getAllHistory.data.sortedByDescending { it.totalHarga }
+            }
 
+            historyAdapter.updateData(sortedHistory)
+        }
     }
 
+    private fun updateHistory(history: List<DataHistory>) {
+        if (history.isEmpty()) {
+            binding.progressBar.visibility = View.GONE
+            recyclerView.visibility = View.GONE
+            Toast.makeText(requireContext(), "Data not found", Toast.LENGTH_SHORT).show()
+        }
+        else {
+            binding.progressBar.visibility = View.GONE
+            recyclerView.visibility = View.VISIBLE
+            historyAdapter.updateData(history)
+        }
+    }
 
 
 

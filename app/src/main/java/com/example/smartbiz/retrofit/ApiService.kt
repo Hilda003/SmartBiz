@@ -1,5 +1,6 @@
 package com.example.smartbiz.retrofit
 
+import androidx.recyclerview.widget.RecyclerView
 import com.example.smartbiz.response.CreateExpense
 import retrofit2.Call
 import com.example.smartbiz.response.CreateIncome
@@ -14,6 +15,7 @@ import com.example.smartbiz.response.GetDetailProfile
 import com.example.smartbiz.response.History
 import com.example.smartbiz.response.InputItem
 import com.example.smartbiz.response.Profit
+import com.example.smartbiz.response.RecoveryPassword
 import com.example.smartbiz.response.Register
 import com.example.smartbiz.response.ResetToken
 import com.example.smartbiz.response.ResponseLogin
@@ -79,13 +81,17 @@ interface ApiService {
         @Path("userId") userId: Int
     ) : Profit
 
+    @POST("recovery_password")
+    suspend fun recoverPassword(@Body request: RecoveryPassword): Response<RecoveryPassword>
+
 
 
     @PUT("/edit_barang/{barangId}")
     suspend fun editBarang(
         @Path("barangId") barangId: Int,
-        @Body editedBarang: EditItem
-    ): Response<EditItem>
+        @Field("namaBarang") namaBarang: String,
+        @Field("hargaBarang") hargaBarang: Int
+    ): EditItem
 
 
     @POST("/forgot-password")

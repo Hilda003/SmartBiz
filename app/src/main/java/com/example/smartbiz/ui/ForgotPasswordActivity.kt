@@ -3,6 +3,7 @@ package com.example.smartbiz.ui
 import android.Manifest
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -59,8 +60,9 @@ class ForgotPasswordActivity : AppCompatActivity() {
                 }
                 is Result.Success -> {
                     binding.progressBar.visibility = View.GONE
-                    Toast.makeText(this, "Reset Password Success", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Reset Password Success. Check your email", Toast.LENGTH_SHORT).show()
                     showNotification("Password Reset Successful", "Your password has been reset successfully. Check your email for the new token to use reset your password.")
+                    startActivity(Intent(this, RecoveryPasswordActivity::class.java))
                 }
                 is Result.Error -> {
                     binding.progressBar.visibility = View.GONE

@@ -9,4 +9,7 @@
 
 
     <style name="Theme.SmartBiz" parent="Base.Theme.SmartBiz" />
+    <style name="SpinnerItemStyle" parent="Widget.AppCompat.DropDownItem.Spinner">
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>

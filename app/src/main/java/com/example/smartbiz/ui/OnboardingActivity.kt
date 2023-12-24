@@ -54,22 +54,22 @@ class OnboardingActivity : AppCompatActivity() {
             listOf(
                 OnBoardingItem(
                    title = resources.getString(R.string.create_income),
-                    description = resources.getString(R.string.desc),
+                    description = resources.getString(R.string.desc_income),
                     R.drawable.income
                 ),
                 OnBoardingItem(
                     title = resources.getString(R.string.create_outcome),
-                    description = resources.getString(R.string.desc),
+                    description = resources.getString(R.string.desc_outcome),
                     R.drawable.outcome
                 ),
                 OnBoardingItem(
                     title = resources.getString(R.string.your_items),
-                    description = resources.getString(R.string.desc),
+                    description = resources.getString(R.string.desc_items),
                     R.drawable.merch
                 ),
                 OnBoardingItem(
                     title = resources.getString(R.string.insight_business),
-                    description = resources.getString(R.string.desc),
+                    description = resources.getString(R.string.desc_insight),
                     R.drawable.insight
                 )
             )

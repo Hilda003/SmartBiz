@@ -1,12 +1,14 @@
 package com.example.smartbiz.ui
 
 import android.app.DatePickerDialog
+import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.view.Window
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -15,6 +17,7 @@ import androidx.lifecycle.Observer
 import com.example.smartbiz.data.Result
 import com.example.smartbiz.database.Preferences
 import com.example.smartbiz.databinding.ActivityCreateOutcomeBinding
+import com.example.smartbiz.databinding.PopupInputBinding
 import com.example.smartbiz.response.Expense
 import com.example.smartbiz.viewmodel.CreateExpenseViewModel
 import com.google.android.material.R
@@ -39,14 +42,13 @@ class CreateOutcomeActivity : AppCompatActivity() {
 
         val calendar = Calendar.getInstance()
         val date = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-            // Set the selected date to the calendar
             calendar.set(Calendar.YEAR, year)
             calendar.set(Calendar.MONTH, month)
             calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
             createExpenseViewModel.updateDate(calendar)
         }
 
-        binding.ivDate.setOnClickListener {
+        binding.tvDatePicker.setOnClickListener {
 
             DatePickerDialog(
                 this,
@@ -82,33 +84,45 @@ class CreateOutcomeActivity : AppCompatActivity() {
         val userId = preferences.getUserId()
 
         binding.btnSaveOutcome.setOnClickListener {
-            val createExpense = Expense(
-                userId,
-                binding.tvDatePicker.text.toString(),
-                "coklat",
-                binding.edtQuantity.text.toString().toInt(),
-                binding.edtPrice.text.toString().toInt(),
-                binding.txtTotal.text.toString().toInt()
-            )
-            createExpenseViewModel.createExpense(createExpense)
-        }
-        createExpenseViewModel.createExpenseResult.observe(this) {
-            when (it) {
-                is Result.Loading -> {
-                    binding.progressBar.visibility = View.VISIBLE
-                }
+            val quantity = binding.edtQuantity.text.toString().toIntOrNull()
+            val price = binding.edtPrice.text.toString().toIntOrNull()
+            if (price == null || quantity == null) {
+                Toast.makeText(this, "Please enter valid quantity and price", Toast.LENGTH_SHORT).show()
+            }
+            else {
+                val createExpense = Expense(
+                    userId,
+                    binding.tvDatePicker.text.toString(),
+                    "coklat",
+                    binding.edtQuantity.text.toString().toInt(),
+                    binding.edtPrice.text.toString().toInt(),
+                    binding.txtTotal.text.toString().toInt()
+                )
+                createExpenseViewModel.createExpense(createExpense)
+            }
+            createExpenseViewModel.createExpenseResult.observe(this) {
+                when (it) {
+                    is Result.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
 
-                is Result.Success -> {
-                    binding.progressBar.visibility = View.GONE
-                    Toast.makeText(this, "Create Expense Success", Toast.LENGTH_SHORT).show()
-                }
+                    is Result.Success -> {
+                        binding.progressBar.visibility = View.GONE
+                        showDialogSuccess()
+                        binding.tvDatePicker.text = ""
+                        binding.edtQuantity.text.clear()
+                        binding.edtPrice.text.clear()
+                        binding.txtTotal.text = "0"
+                    }
 
-                is Result.Error -> {
-                    binding.progressBar.visibility = View.GONE
-                    Toast.makeText(this, it.error, Toast.LENGTH_SHORT).show()
+                    is Result.Error -> {
+                        binding.progressBar.visibility = View.GONE
+                        showDialogError()
+                    }
                 }
             }
-        }
+            }
+
 
 
     }
@@ -123,7 +137,7 @@ class CreateOutcomeActivity : AppCompatActivity() {
     }
 
     private fun setupSpinner(){
-        val itemName = arrayOf("coklat")
+        val itemName = arrayListOf("coklat, pie, apple")
         val spinner = binding.dropdownMenu
         val adapter = ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, itemName)
         spinner.adapter = adapter
@@ -143,6 +157,28 @@ class CreateOutcomeActivity : AppCompatActivity() {
             }
 
         }
+    }
+
+    private fun showDialogData(message: String, iconResId: Int) {
+        val binding = PopupInputBinding.inflate(layoutInflater)
+        binding.message.text = message
+        binding.icon.setImageResource(iconResId)
+
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(binding.root)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        binding.btnOk.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
+    private fun showDialogError() {
+        showDialogData("Create Outcome Failed", com.example.smartbiz.R.drawable.cancel)
+    }
+    private fun showDialogSuccess() {
+        showDialogData("Create Outcome Success", com.example.smartbiz.R.drawable.check_circle)
     }
 
 

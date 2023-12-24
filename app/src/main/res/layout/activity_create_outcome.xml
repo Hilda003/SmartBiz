@@ -30,47 +30,46 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
     <TextView
         android:id="@+id/tv_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/date"
-        android:textSize="18sp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="44dp"
         android:fontFamily="@font/jost_medium"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="50dp"
-        android:textColor="@color/white"
+        android:text="@string/date"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appbar"/>
+        app:layout_constraintTop_toBottomOf="@+id/appbar" />
 
+    <!--    <ImageView-->
+<!--        android:id="@+id/iv_date"-->
+<!--        android:layout_width="25dp"-->
+<!--        android:layout_height="25dp"-->
+<!--        android:layout_marginTop="5dp"-->
+<!--        android:contentDescription="@string/date"-->
+<!--        android:src="@drawable/date"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.571"-->
+<!--        app:layout_constraintStart_toEndOf="@id/tv_date_picker"-->
+<!--        app:layout_constraintTop_toTopOf="@id/tv_date_picker" />-->
 
     <TextView
         android:id="@+id/tv_date_picker"
-        android:layout_width="0dp"
+        android:layout_width="330dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="60dp"
         android:layout_marginStart="20dp"
-        android:text="@string/enter_the_date"
-        android:textColor="@color/black"
-        android:fontFamily="@font/jost_regular"
-        android:padding="10dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/input_edit_text"
+        android:fontFamily="@font/jost_regular"
+        android:hint="@string/_25_09_2023"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        app:drawableEndCompat="@drawable/calendar_month"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.689"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_date"/>
-
-    <ImageView
-        android:id="@+id/iv_date"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@drawable/date"
-        android:layout_marginTop="5dp"
-        android:contentDescription="@string/date"
-        app:layout_constraintStart_toEndOf="@id/tv_date_picker"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tv_date_picker"/>
-
-
+        app:layout_constraintTop_toBottomOf="@+id/tv_date" />
 
     <TextView
         android:id="@+id/tv_total"
@@ -90,7 +89,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/jost_medium"
-        android:text="@string/rp_30_000"
+        android:text="@string/rp"
         android:textSize="20sp"
         android:layout_marginStart="120dp"
         android:textColor="@color/white"
@@ -101,9 +100,9 @@
 
     <Button
         android:id="@+id/btn_save_outcome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
+        android:layout_width="330dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="60dp"
         android:backgroundTint="@color/pink"
@@ -117,12 +116,13 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_gravity="center"
         android:layout_marginTop="296dp"
         android:layout_marginEnd="188dp"
         android:visibility="gone"
+        android:indeterminateTint="@color/pink"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/appbar" />
 
@@ -130,8 +130,8 @@
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="68dp"
         android:fontFamily="@font/jost_medium"
         android:text="@string/how_many"
         app:layout_constraintStart_toStartOf="parent"
@@ -141,7 +141,7 @@
         android:id="@+id/tv_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/jost_medium"
         android:text="@string/how_much_for_the_price"
@@ -152,9 +152,9 @@
         android:id="@+id/dropdown_menu"
         android:layout_width="330dp"
         android:layout_height="40dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginBottom="8dp"
-
+        android:background="@color/white"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toTopOf="@+id/textView11"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -163,7 +163,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
-        android:layout_marginEnd="264dp"
+        android:layout_marginEnd="248dp"
         android:layout_marginBottom="4dp"
         android:fontFamily="@font/jost_medium"
         android:text="@string/what_kind_of_item"
@@ -174,48 +174,51 @@
 
     <EditText
         android:id="@+id/edt_quantity"
-        android:layout_width="0dp"
+        android:layout_width="330dp"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="88dp"
-        android:layout_marginEnd="60dp"
+        android:layout_marginEnd="32dp"
         android:autofillHints=""
         android:background="@drawable/input"
         android:backgroundTint="@color/white"
         android:ems="8"
         android:inputType="number"
+        android:hint="0"
         android:padding="10dp"
         android:singleLine="true"
+        android:fontFamily="@font/jost_regular"
+        android:textColor="@color/black_01"
+        android:textColorHint="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.71"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_date_picker"
         tools:alpha="100"
-        android:textColorHint="@color/gray"
-        android:textColor="@color/black_01"
         tools:ignore="LabelFor" />
 
     <EditText
         android:id="@+id/edt_price"
-        android:layout_width="0dp"
+        android:layout_width="330dp"
         android:layout_height="40dp"
-        android:layout_marginEnd="60dp"
         android:layout_marginStart="20dp"
-        android:padding="10dp"
-        android:ems="8"
-        tools:alpha="100"
-        android:singleLine="true"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="24dp"
+        android:autofillHints=""
         android:background="@drawable/input"
         android:backgroundTint="@color/white"
+        android:ems="8"
+        android:hint="Rp"
+        android:inputType="number"
+        android:padding="10dp"
+        android:singleLine="true"
+        android:fontFamily="@font/jost_regular"
+        android:textColor="@color/black_01"
+        android:textColorHint="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.327"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_quantity"
-        android:autofillHints=""
-        android:inputType="number"
-        android:hint="@string/_300_000"
-        android:textColorHint="@color/gray"
-        android:textColor="@color/black_01"
+        tools:alpha="100"
         tools:ignore="LabelFor" />
 
 

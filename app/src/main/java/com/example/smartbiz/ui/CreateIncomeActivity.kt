@@ -2,18 +2,23 @@ package com.example.smartbiz.ui
 
 
 import android.app.DatePickerDialog
+import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.view.Window
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
 
 import androidx.activity.viewModels
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import com.example.smartbiz.R
 import com.example.smartbiz.adapter.CreateIncomeAdapter
 
 import com.example.smartbiz.databinding.ActivityCreateIncomeBinding
@@ -22,11 +27,17 @@ import com.example.smartbiz.viewmodel.CreateIncomeViewModel
 import java.util.Calendar
 import com.example.smartbiz.data.Result
 import com.example.smartbiz.database.Preferences
+import com.example.smartbiz.database.User
+import com.example.smartbiz.databinding.PopupInputBinding
+import com.example.smartbiz.response.CreateExpense
+import com.example.smartbiz.response.DataItem
+import com.example.smartbiz.viewmodel.ItemViewModel
 
 class CreateIncomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCreateIncomeBinding
     private lateinit var preferences: Preferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityCreateIncomeBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
@@ -38,12 +49,10 @@ class CreateIncomeActivity : AppCompatActivity() {
         }
 
         preferences = Preferences(this)
-
         setupSpinner()
 
         val calendar = Calendar.getInstance()
         val date = DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-            // Set the selected date to the calendar
             calendar.set(Calendar.YEAR, year)
             calendar.set(Calendar.MONTH, month)
             calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth)
@@ -51,7 +60,7 @@ class CreateIncomeActivity : AppCompatActivity() {
         }
 
 
-        binding.ivDate.setOnClickListener {
+        binding.tvDatePicker.setOnClickListener {
             DatePickerDialog(
                 this,
                 date,
@@ -75,8 +84,6 @@ class CreateIncomeActivity : AppCompatActivity() {
                 updateTotal()
             }
         })
-
-        // Initialize TextWatcher for edtPrice
         binding.edtPrice.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
 
@@ -86,38 +93,54 @@ class CreateIncomeActivity : AppCompatActivity() {
                 updateTotal()
             }
         })
-
+        preferences = Preferences(this)
         val userId = preferences.getUserId()
 
-        binding.btnSaveIncome.setOnClickListener {
-            val createIncomeRequest = CreateIncomeRequest(
-                userId,
-                binding.tvDatePicker.text.toString(),
-                "coklat",
-                binding.edtQuantity.text.toString().toInt(),
-                binding.edtPrice.text.toString().toInt(),
-                binding.txtTotal.text.toString().toInt()
+        val itemId = preferences.getItem()
 
-            )
-            createIncomeViewModel.createIncome(createIncomeRequest)
-        }
-        createIncomeViewModel.createIncomeResult.observe(this) {
-            when (it) {
-                is Result.Loading -> {
-                    binding.progressBar.visibility = View.VISIBLE
-                }
-                is Result.Success -> {
-                    binding.progressBar.visibility = View.GONE
-                    Toast.makeText(this, "Create Income Success", Toast.LENGTH_SHORT).show()
-                }
-                is Result.Error -> {
-                    binding.progressBar.visibility = View.GONE
-                    Log.d("YourActivity", "createIncomeViewModel.createIncome failed: ${it.error}")
-                    binding.progressBar.visibility = View.GONE
-                    Toast.makeText(this, "Error: ${it.error}", Toast.LENGTH_SHORT).show()
+
+        binding.btnSaveIncome.setOnClickListener {
+            val quantity = binding.edtQuantity.text.toString().toIntOrNull()
+            val price = binding.edtPrice.text.toString().toIntOrNull()
+            if (quantity == null || price == null) {
+                Toast.makeText(this, "Please enter valid quantity and price", Toast.LENGTH_SHORT)
+                    .show()
+            } else{
+                val createIncomeRequest = CreateIncomeRequest(
+                    userId,
+                    binding.tvDatePicker.text.toString(),
+                    binding.dropdownMenu.selectedItem.toString(),
+                    binding.edtQuantity.text.toString().toInt(),
+                    binding.edtPrice.text.toString().toInt(),
+                    binding.txtTotal.text.toString().toInt()
+
+                )
+                createIncomeViewModel.createIncome(createIncomeRequest)
+            }
+            createIncomeViewModel.createIncomeResult.observe(this) {
+                when (it) {
+                    is Result.Loading -> {
+                        binding.progressBar.visibility = View.VISIBLE
+                    }
+                    is Result.Success -> {
+                        binding.progressBar.visibility = View.GONE
+                        showDialogSuccess()
+                        binding.tvDatePicker.text = ""
+                        binding.edtQuantity.text.clear()
+                        binding.edtPrice.text.clear()
+                        binding.txtTotal.text = "0"
+
+                    }
+                    is Result.Error -> {
+                        binding.progressBar.visibility = View.GONE
+                        showDialogError()
+                    }
                 }
             }
-        }
+            }
+
+
+
 
     }
 
@@ -129,7 +152,8 @@ class CreateIncomeActivity : AppCompatActivity() {
     }
 
     private fun setupSpinner(){
-        val itemName = arrayOf("coklat")
+
+        val itemName = arrayListOf("coklat", "kopi", "teh")
         val spinner = binding.dropdownMenu
         val adapter = ArrayAdapter(this, com.google.android.material.R.layout.support_simple_spinner_dropdown_item, itemName)
         spinner.adapter = adapter
@@ -149,5 +173,28 @@ class CreateIncomeActivity : AppCompatActivity() {
             }
 
         }
+    }
+
+    private fun showDialogError() {
+        showDialogData("Create Income Failed", R.drawable.cancel)
+    }
+    private fun showDialogSuccess() {
+        showDialogData("Create Income Success", R.drawable.check_circle)
+    }
+
+    private fun showDialogData(message: String, iconResId: Int) {
+        val binding = PopupInputBinding.inflate(layoutInflater)
+        binding.message.text = message
+        binding.icon.setImageResource(iconResId)
+
+        val dialog = Dialog(this@CreateIncomeActivity)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(binding.root)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        binding.btnOk.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
     }
 }

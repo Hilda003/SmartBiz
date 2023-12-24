@@ -41,10 +41,10 @@
         android:id="@+id/tvEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="33dp"
         android:layout_marginTop="108dp"
         android:fontFamily="@font/jost_regular"
-        android:text="@string/tv_email"
+        android:text="@string/username"
         android:textColor="@color/yellow_02"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -165,12 +165,13 @@
 
     <ProgressBar
         android:id="@+id/progressBar"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_gravity="center"
         android:layout_marginTop="296dp"
         android:layout_marginEnd="188dp"
         android:visibility="gone"
+        android:indeterminateTint="@color/yellow_01"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/txtBiz" />
 

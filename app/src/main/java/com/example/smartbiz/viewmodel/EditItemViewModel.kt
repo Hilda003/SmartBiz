@@ -14,16 +14,4 @@ class EditItemViewModel(private val repository: Repository) : ViewModel() {
     private val _editBarangResult = MutableLiveData<Result<EditItem>>()
     val editBarangResult: LiveData<Result<EditItem>> get() = _editBarangResult
 
-    fun editBarang(barangId: Int, editedBarang: EditItem) {
-        viewModelScope.launch {
-            try {
-                _editBarangResult.value = Result.Loading
-                val result = repository.editBarang(barangId, editedBarang)
-                _editBarangResult.value = result
-            } catch (e: Exception) {
-                _editBarangResult.value = Result.Error("An error occurred: ${e.message}")
-            }
-        }
-
-    }
 }

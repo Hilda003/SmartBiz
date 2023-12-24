@@ -4,21 +4,22 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.smartbiz.data.Repository
+import com.example.smartbiz.retrofit.ApiService
 import com.example.smartbiz.viewmodel.CreateExpenseViewModel
 import com.example.smartbiz.viewmodel.CreateIncomeViewModel
 import com.example.smartbiz.viewmodel.EditItemViewModel
 import com.example.smartbiz.viewmodel.ForgotPasswordViewModel
 import com.example.smartbiz.viewmodel.HistoryViewModel
 import com.example.smartbiz.viewmodel.InputItemViewModel
+import com.example.smartbiz.viewmodel.ItemViewModel
 import com.example.smartbiz.viewmodel.LoginViewModel
 import com.example.smartbiz.viewmodel.MerchItemViewModel
 import com.example.smartbiz.viewmodel.ProfileViewModel
+import com.example.smartbiz.viewmodel.RecoveryPasswordViewModel
 import com.example.smartbiz.viewmodel.RegisterViewModel
 import com.example.smartbiz.viewmodel.StatisticViewModel
 
-class ViewModelFactory private constructor(private val repository: Repository) : ViewModelProvider.NewInstanceFactory()
-
-    {
+class ViewModelFactory private constructor(private val repository: Repository) : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -56,6 +57,9 @@ class ViewModelFactory private constructor(private val repository: Repository) :
             }
             modelClass.isAssignableFrom(StatisticViewModel::class.java) -> {
                 StatisticViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(RecoveryPasswordViewModel::class.java) -> {
+                RecoveryPasswordViewModel(repository) as T
             }
 
 

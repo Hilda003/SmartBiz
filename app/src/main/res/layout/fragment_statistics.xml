@@ -15,7 +15,6 @@
             android:background="@drawable/rounded"
             app:layout_constraintBottom_toBottomOf="parent">
 
-
             <ImageView
                 android:id="@+id/img_line"
                 android:layout_width="90dp"
@@ -124,19 +123,26 @@
 
 
             <com.github.mikephil.charting.charts.PieChart
-                android:layout_margin="5dp"
                 android:id="@+id/expense_chart"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_margin="60dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/income"
-                app:layout_constraintVertical_bias="0.421" />
-
-
-
+                app:layout_constraintVertical_bias="0.0" />
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="62dp"
+                android:visibility="gone"
+                android:layout_marginEnd="184dp"
+                android:indeterminateTint="@color/yellow_01"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_statistics" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
